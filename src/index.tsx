@@ -1,10 +1,11 @@
-import React, { ReactChildren, ReactElement } from 'react';
+import React from 'react';
 
 export const FeatureFlagsContext = React.createContext({});
 
 export enum AvailableFlags { }
 
-export const FeatureFlags = (props: { children: ReactElement }) => (
+type Children = JSX.Element[] | JSX.Element | null | string;
+export const FeatureFlags = (props: { children: Children }) => (
   <FeatureFlagsContext.Provider value={flags}>
     {props.children}
   </FeatureFlagsContext.Provider>
@@ -12,7 +13,7 @@ export const FeatureFlags = (props: { children: ReactElement }) => (
 
 interface Prop {
   name: AvailableFlags;
-  children: ReactChildren | ReactElement;
+  children: Children;
 }
 export const Flag = (props: Prop) => {
   return (
@@ -24,4 +25,5 @@ export const Flag = (props: Prop) => {
   );
 };
 
-const flags = {};
+type FlagsType = { [key in AvailableFlags]: boolean };
+const flags: FlagsType = {};
