@@ -1,0 +1,9 @@
+{
+  "name": "feature_flags",
+  "version": "0.0.1",
+  "description": "A package that implements feature toggles for JS and React using Typescript.",
+  "main": "index.js",
+  "repository": "https://github.com/vjustov/feature_toggles",
+  "author": "Viktor Justo Vasquez",
+  "license": "MIT"
+}
