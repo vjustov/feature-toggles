@@ -3,7 +3,6 @@ import React, { ReactChildren, ReactElement } from 'react';
 export const FeatureFlagsContext = React.createContext({});
 
 export enum AvailableFlags { }
-// exampleFeatureName = 'exampleFeatureName'
 
 export const FeatureFlags = (props: { children: ReactElement }) => (
   <FeatureFlagsContext.Provider value={flags}>
@@ -25,6 +24,4 @@ export const Flag = (props: Prop) => {
   );
 };
 
-const flags = {
-  // feature: true
-};
+const flags = {};
