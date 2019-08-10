@@ -2,17 +2,19 @@ import React from 'react';
 
 export const FeatureFlagsContext = React.createContext({});
 
-export enum AvailableFlags { }
+export enum AvailableFlags {
+  testFlag = "testFlag"
+}
 
 type Children = JSX.Element[] | JSX.Element | null | string;
-export const FeatureFlags = (props: { children: Children }) => (
-  <FeatureFlagsContext.Provider value={flags}>
+export const FeatureFlags = (props: { children: Children; values: {} }) => (
+  <FeatureFlagsContext.Provider value={props.values || flags}>
     {props.children}
   </FeatureFlagsContext.Provider>
 );
 
 interface Prop {
-  name: AvailableFlags;
+  name: AvailableFlags | string;
   children: Children;
 }
 export const Flag = (props: Prop) => {
@@ -26,4 +28,6 @@ export const Flag = (props: Prop) => {
 };
 
 type FlagsType = { [key in AvailableFlags]: boolean };
-const flags: FlagsType = {};
+const flags: FlagsType = {
+  [AvailableFlags.testFlag]: true
+};
