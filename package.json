@@ -5,5 +5,11 @@
   "main": "index.js",
   "repository": "https://github.com/vjustov/feature_toggles",
   "author": "Viktor Justo Vasquez",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^3.5.3"
+  }
 }
