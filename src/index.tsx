@@ -12,8 +12,8 @@ let _flags: FlagsType = {
 };
 
 export const loadFlags = (flags: FlagsType) => {
-  _flags = flags
-}
+  _flags = flags;
+};
 
 type Children = JSX.Element[] | JSX.Element | null | string;
 export const FeatureFlags = (props: { children: Children; values: {} }) => (
@@ -45,8 +45,11 @@ export const flag = (
   name: AvailableFlags | string,
   onFlagTrue: () => void,
   // tslint:disable-next-line:no-empty
-  onFlagFalse: () => void = () => { }
+  onFlagFalse: () => void = () => {},
 ) => {
-  if (_flags[name as keyof typeof AvailableFlags]) { onFlagTrue(); }
-  else { onFlagFalse(); }
+  if (_flags[name as keyof typeof AvailableFlags]) {
+    onFlagTrue();
+  } else {
+    onFlagFalse();
+  }
 };
