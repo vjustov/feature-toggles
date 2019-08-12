@@ -3,7 +3,7 @@ import React from 'react';
 export const FeatureFlagsContext = React.createContext({});
 
 export enum AvailableFlags {
-  testFlag = "testFlag"
+  testFlag = 'testFlag',
 }
 
 type Children = JSX.Element[] | JSX.Element | null | string;
@@ -18,6 +18,11 @@ interface Prop {
   children: Children;
 }
 export const Flag = (props: Prop) => {
+  let name;
+  if (typeof props.name === 'string' && props.name in AvailableFlags) {
+    name = AvailableFlags[props.name as keyof typeof AvailableFlags];
+  }
+
   return (
     <FeatureFlagsContext.Consumer>
       {(flagsObj: { [key: string]: boolean }) =>
@@ -29,5 +34,5 @@ export const Flag = (props: Prop) => {
 
 type FlagsType = { [key in AvailableFlags]: boolean };
 const flags: FlagsType = {
-  [AvailableFlags.testFlag]: true
+  [AvailableFlags.testFlag]: true,
 };
