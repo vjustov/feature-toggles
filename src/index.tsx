@@ -44,8 +44,9 @@ export const Flag = (props: Prop) => {
 export const flag = (
   name: AvailableFlags | string,
   onFlagTrue: () => void,
+  // tslint:disable-next-line:no-empty
   onFlagFalse: () => void = () => { }
 ) => {
-  if (_flags[name as keyof typeof AvailableFlags]) onFlagTrue();
-  else onFlagFalse();
+  if (_flags[name as keyof typeof AvailableFlags]) { onFlagTrue(); }
+  else { onFlagFalse(); }
 };
