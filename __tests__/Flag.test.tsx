@@ -17,6 +17,18 @@ describe('flagging content', () => {
     expect(getByText('This is a test text')).toBeInTheDocument();
   });
 
+  it('renders the content if the flag name is provided as a string', () => {
+    const { queryByText } = render(
+      <FeatureFlags values={{ testFlag: true }}>
+        <Flag name={"testFlag"}>
+          <p>This is a test text</p>
+        </Flag>
+      </FeatureFlags>
+    );
+
+    expect(queryByText('This is a test text')).toBeInTheDocument();
+  });
+
   it('doesnt render the content if the flag is false', () => {
     const { queryByText } = render(
       <FeatureFlags values={{ testFlag: false }}>
@@ -39,17 +51,5 @@ describe('flagging content', () => {
     );
 
     expect(queryByText('This is a test text')).not.toBeInTheDocument();
-  });
-
-  it('renders the content if the flag name is provided as a string', () => {
-    const { queryByText } = render(
-      <FeatureFlags values={{ testFlag: true }}>
-        <Flag name={"testFlag"}>
-          <p>This is a test text</p>
-        </Flag>
-      </FeatureFlags>
-    );
-
-    expect(queryByText('This is a test text')).toBeInTheDocument();
   });
 });
