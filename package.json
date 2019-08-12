@@ -1,24 +1,29 @@
 {
   "name": "@vjustov/feature-toggles",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Viktor Justo Vasquez",
   "repository": "https://github.com/vjustov/feature-toggles",
   "description": "A package that implements feature toggles for JS and React using Typescript.",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "keywords": ["Feature Flags", "Feature Toggles", "Flags", "Feature Switch", "Conditional Feature"],
+  "keywords": [
+    "Feature Flags",
+    "Feature Toggles",
+    "Flags",
+    "Feature Switch",
+    "Conditional Feature"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "jest --config jestconfig.json",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
-
-    "prepare" : "npm run build",
-    "prepublishOnly" : "npm test && npm run lint",
-    "preversion" : "npm run lint",
-    "version" : "npm run format && git add -A src",
-    "postversion" : "git push && git push --tags"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.0.0",
