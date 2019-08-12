@@ -1,14 +1,23 @@
 import React from 'react';
 
+type FlagsType = { [key in AvailableFlags | string]: boolean };
 export const FeatureFlagsContext = React.createContext({});
 
 export enum AvailableFlags {
   testFlag = 'testFlag',
 }
 
+let _flags: FlagsType = {
+  [AvailableFlags.testFlag]: true,
+};
+
+export const loadFlags = (flags: FlagsType) => {
+  _flags = flags
+}
+
 type Children = JSX.Element[] | JSX.Element | null | string;
 export const FeatureFlags = (props: { children: Children; values: {} }) => (
-  <FeatureFlagsContext.Provider value={props.values || flags}>
+  <FeatureFlagsContext.Provider value={props.values || _flags}>
     {props.children}
   </FeatureFlagsContext.Provider>
 );
@@ -32,7 +41,11 @@ export const Flag = (props: Prop) => {
   );
 };
 
-type FlagsType = { [key in AvailableFlags]: boolean };
-const flags: FlagsType = {
-  [AvailableFlags.testFlag]: true,
+export const flag = (
+  name: AvailableFlags | string,
+  onFlagTrue: () => void,
+  onFlagFalse: () => void = () => { }
+) => {
+  if (_flags[name as keyof typeof AvailableFlags]) onFlagTrue();
+  else onFlagFalse();
 };
